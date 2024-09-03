@@ -3,6 +3,7 @@ import pluginJs from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import pluginReact from 'eslint-plugin-react'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import process from 'node:process'
 
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
@@ -11,7 +12,7 @@ export default [
   },
   {
     languageOptions: {
-      globals: globals.browser,
+      globals: { ...globals.browser, process: 'readonly' },
       ecmaVersion: 12, // 使用最新的 ECMAScript 语法
       sourceType: 'module', // 代码是 ECMAScript 模块
     },
@@ -29,12 +30,11 @@ export default [
   {
     rules: {
       'indent': ['error', 2], // 缩进使用 2 个空格
-      'linebreak-style': ['error', 'unix'], // 使用 Unix 风格的换行符
-      'no-console': 'error',
-      // quotes: ["error", "single"], // 使用单引号
-      // semi: ["error", "never"], // 语句末尾不加分号
-      // "no-console": process.env.NODE_ENV === "production" ? "warn" : "off", // 生产环境中警告 console 使用，开发环境中关闭规则
-      // "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off", // 生产环境中警告 debugger 使用，开发环境中关闭规则
+      'linebreak-style': ['error', 'unix'], // 使用 windows | Unix 风格的换行符
+      'quotes': ['error', 'single'], // 使用单引号
+      'semi': ['error', 'never'], // 语句末尾不加分号
+      'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off', // 生产环境中警告 console 使用，开发环境中关闭规则
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off', // 生产环境中警告 debugger 使用，开发环境中关闭规则
     },
   },
 ]

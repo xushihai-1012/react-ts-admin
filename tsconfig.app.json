@@ -18,7 +18,14 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    /* 配置路径别名提示*/
+    "paths": {
+      "@/*": ["src/*"]
+    }
+    /*any类型不报错*/
+    // "noImplicitAny": false
   },
-  "include": ["src"]
+  "include": ["src", "auto-imports.d.ts"]
 }

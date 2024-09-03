@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import './App.scss'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  // console.log(1111111111)
+  // 获取环境变量
+  console.log(import.meta.env.VITE_APP_URL)
 
   return (
     <>
