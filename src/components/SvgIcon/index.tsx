@@ -1,11 +1,35 @@
-interface propsType{
-    prefix: string, name: string, color: string, size: array
+interface PropsType {
+  prefix?: string
+  name: string
+  color?: string
+  size?: number | string
 }
 
-const SvgIcon = (props: ) => {
-  // const { prefix, name, color, size } = props
+import styles from './index.module.scss'
 
-  return <i className={``}></i>
+const SvgIcon: React.FC<PropsType> = ({
+  prefix = '#icon',
+  name,
+  color,
+  size = 20,
+}) => {
+  //   console.log(prefix, name, color, size)
+
+  const getStyle = () => {
+    let s = `${size}`
+    s = `${s.replace('px', '')}px`
+    return {
+      fontSize: s,
+    }
+  }
+
+  return (
+    <i className={styles.icon} style={getStyle()}>
+      <svg aria-hidden="true">
+        <use xlinkHref={`${prefix}-${name}`} fill={color} />
+      </svg>
+    </i>
+  )
 }
 
 export default SvgIcon
