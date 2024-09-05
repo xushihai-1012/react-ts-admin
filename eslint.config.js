@@ -12,7 +12,10 @@ export default [
   },
   {
     languageOptions: {
-      globals: { ...globals.browser, process: 'readonly' },
+      globals: {
+        ...globals.browser,
+        process: 'readonly',
+      },
       ecmaVersion: 12, // 使用最新的 ECMAScript 语法
       sourceType: 'module', // 代码是 ECMAScript 模块
     },
@@ -33,6 +36,8 @@ export default [
       'linebreak-style': ['error', 'unix'], // 使用 windows | Unix 风格的换行符
       'quotes': ['error', 'single'], // 使用单引号
       'semi': ['error', 'never'], // 语句末尾不加分号
+      'react/react-in-jsx-scope': 'off', //安全地禁用'React' must be in scope when using JSX 提示
+      'react/jsx-uses-react': 'off',
       'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off', // 生产环境中警告 console 使用，开发环境中关闭规则
       'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off', // 生产环境中警告 debugger 使用，开发环境中关闭规则
     },

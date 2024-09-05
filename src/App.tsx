@@ -1,15 +1,15 @@
 // import React, { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 // import './App.scss'
-import SvgIcon from '@/components/SvgIcon'
+// import SvgIcon from '@/components/SvgIcon'
 import { Outlet } from 'react-router-dom'
 
 function App() {
   //   const [count, setCount] = useState(0)
 
   // 获取环境变量
-  //   console.log(import.meta.env.VITE_APP_URL)
+  //   console.log(import.meta.env.VITE_APP_BASE_URL)
 
   return (
     <>

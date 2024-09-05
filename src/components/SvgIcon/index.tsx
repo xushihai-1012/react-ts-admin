@@ -12,7 +12,7 @@ const SvgIcon: React.FC<PropsType> = ({
   name,
   color,
   size = 20,
-}) => {
+}: PropsType) => {
   //   console.log(prefix, name, color, size)
 
   const getStyle = () => {

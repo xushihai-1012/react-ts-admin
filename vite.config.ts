@@ -26,14 +26,14 @@ export default defineConfig({
         /\.md$/, // .md
       ],
       imports: ['react', 'react-router-dom'],
-      //   dts: fileURLToPath(new URL('./auto-imports.d.ts', import.meta.url)),
-      //   eslintrc: {
-      //     enabled: true,
-      // filepath: fileURLToPath(
-      //   new URL('./.eslintrc-auto-import.json', import.meta.url),
-      // ),
-      // globalsPropValue: true,
-      //   },
+      // 生成相应的.d.ts文件路径
+      dts: './auto-imports.d.ts',
+      // 生成对应的.eslintrc-auto-import.json文件
+      eslintrc: {
+        enabled: false,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true,
+      },
     }),
     visualizer({
       gzipSize: true,
