@@ -7,7 +7,7 @@ import routes from './router'
 import 'normalize.css'
 // 引入图标
 import 'virtual:svg-icons-register'
-// import './index.scss'
+import './index.scss'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

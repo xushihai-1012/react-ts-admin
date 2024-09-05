@@ -1,5 +1,5 @@
 const Login: React.FC = () => {
-  return <div></div>
+  return <div className="text-center">登录</div>
 }
 
 export default Login
