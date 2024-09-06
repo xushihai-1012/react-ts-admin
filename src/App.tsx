@@ -1,43 +1,39 @@
-// import React, { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { Suspense } from 'react'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
 import './App.scss'
-// import SvgIcon from '@/components/SvgIcon'
-import { Outlet } from 'react-router-dom'
+import { App as AntdApp, ConfigProvider } from 'antd'
+import useSettingsStore from '@/stores/settings'
+
+import zh_ch from 'antd/locale/zh_CN'
 
 function App() {
-  //   const [count, setCount] = useState(0)
+  const { colorPrimary } = useSettingsStore()
 
   // 获取环境变量
   //   console.log(import.meta.env.VITE_APP_BASE_URL)
 
   return (
-    <>
-      {/* <SvgIcon name="up" color="red"></SvgIcon>
-      <SvgIcon name="notice" color="red"></SvgIcon> */}
-      {/* <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div> */}
-      {/* <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-
-      <Outlet />
-    </>
+    <ConfigProvider
+      locale={zh_ch}
+      theme={{
+        cssVar: true, //开启css变量
+        hashed: false, // 如果你的应用中只存在一个版本的 antd，你可以设置为 false 来进一步减小样式体积。
+        token: {
+          colorPrimary,
+        },
+      }}
+      componentSize="large"
+    >
+      <Suspense fallback={<div>loading...</div>}>
+        <AntdApp>
+          <RouterProvider
+            router={router}
+            fallbackElement={<div>加载中...</div>}
+          ></RouterProvider>
+        </AntdApp>
+      </Suspense>
+    </ConfigProvider>
   )
 }
 
