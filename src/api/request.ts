@@ -1,4 +1,9 @@
-import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios'
+import axios, {
+  AxiosRequestConfig,
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios'
 import { message as Message } from 'antd'
 import { Result } from '@/types/api'
 import { ResultEnum } from '@/types/enum'
@@ -10,7 +15,7 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(
-  (config) => {
+  (config: InternalAxiosRequestConfig) => {
     config.headers.Authorization = 'Bearer Token'
     return config
   },
@@ -20,8 +25,15 @@ axiosInstance.interceptors.request.use(
 )
 
 axiosInstance.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse<Result>) => {
     if (!response.data) throw new Error('请求出错，请稍后重试')
+    // 检查配置的响应类型是否为二进制类型（'blob' 或 'arraybuffer'）, 如果是，直接返回响应对象
+    if (
+      response.config.responseType === 'blob' ||
+      response.config.responseType === 'arraybuffer'
+    ) {
+      return response
+    }
 
     const { status, data, message } = response.data
 
@@ -34,7 +46,7 @@ axiosInstance.interceptors.response.use(
 
     throw new Error(message || '请求出错，请稍后重试')
   },
-  (error) => {
+  (error: AxiosError<Result>) => {
     const { message, response } = error || {}
 
     const errMsg = response?.data?.message || message || '操作失败，系统异常'
@@ -47,17 +59,4 @@ axiosInstance.interceptors.response.use(
   },
 )
 
-class APIClient {
-  request<T>(config: AxiosRequestConfig): Promise<T> {
-    return new Promise((resolve, reject) => {
-      axiosInstance
-        .request(config)
-        .then((res) => {
-          resolve(res)
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
-  }
-}
+export default axiosInstance

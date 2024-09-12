@@ -1,7 +1,9 @@
 import { http, HttpResponse } from 'msw'
-import { ORG_LIST } from '@/'
+import { ORG_LIST } from '@/_mock/assets'
 
-const orgList = http.get('', () => {
+import { OrgApiPath } from '@/api/orgService'
+
+const orgList = http.get(`/api${OrgApiPath}`, () => {
   return HttpResponse.json({
     status: 0,
     message: '',

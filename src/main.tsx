@@ -7,6 +7,9 @@ import 'normalize.css'
 import 'virtual:svg-icons-register'
 import './index.scss'
 
+import { worker } from '@/_mock'
+// worker.start({})
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
