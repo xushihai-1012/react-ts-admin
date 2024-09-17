@@ -63,16 +63,20 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  //   配置代理
-  //   server: {
-  //     proxy: {
-  //       '/api': {
-  //         target: 'https://xxxxx.com',
-  //         changeOrigin: true,
-  //         rewrite: (path) => path.replace(/^\/api/, ''),
-  //       },
-  //     },
-  //   },
+    // 配置代理
+    server: {
+      // 自动打开浏览器
+    open: true,
+    host: true,
+    port: 5173,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:5173',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
+    },
   build: {
     sourcemap: true,
     outDir: 'reactTsAdmin',

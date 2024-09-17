@@ -24,6 +24,8 @@
   "devDependencies": {
     "@eslint/js": "^9.9.1",
     "@faker-js/faker": "^9.0.0",
+    "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@types/node": "^22.5.2",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
@@ -48,5 +50,10 @@
     "vite": "^5.4.1",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-svg-icons": "^2.0.1"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

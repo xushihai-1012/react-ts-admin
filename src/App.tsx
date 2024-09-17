@@ -4,14 +4,26 @@ import { router } from './router'
 import './App.scss'
 import { App as AntdApp, ConfigProvider } from 'antd'
 import useSettingsStore from '@/stores/settings'
-
 import zh_ch from 'antd/locale/zh_CN'
+// import { getOrgList } from "@/api/orgService";
 
 function App() {
   const { colorPrimary } = useSettingsStore()
 
   // 获取环境变量
   //   console.log(import.meta.env.VITE_APP_BASE_URL)
+
+  // 在当前页面msw捕捉不到请求 暂无办法解决
+  // const getOrgListReq = async ()  => {
+  //   const res = await getOrgList()
+  //   console.log(res);
+  // }
+
+
+  // useEffect(() => {
+  //   getOrgListReq()
+  // })
+
 
   return (
     <ConfigProvider

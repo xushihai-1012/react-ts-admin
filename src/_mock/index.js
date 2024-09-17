@@ -6,4 +6,5 @@ import orgMockApi from './handlers/_org'
 const handlers = [...orgMockApi]
 
 // 注册 Request Handlers, 生成Worker
-export const worker = setupWorker(...handlers)
+const worker = setupWorker(...handlers)
+export default worker
