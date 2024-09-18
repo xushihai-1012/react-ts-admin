@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
-import { router } from './router'
+import Router from './router'
 import './App.scss'
 import { App as AntdApp, ConfigProvider } from 'antd'
 import useSettingsStore from '@/stores/settings'
@@ -19,33 +19,32 @@ function App() {
   //   console.log(res);
   // }
 
-
   // useEffect(() => {
   //   getOrgListReq()
   // })
 
-
   return (
-    <ConfigProvider
-      locale={zh_ch}
-      theme={{
-        cssVar: true, //开启css变量
-        hashed: false, // 如果你的应用中只存在一个版本的 antd，你可以设置为 false 来进一步减小样式体积。
-        token: {
-          colorPrimary,
-        },
-      }}
-      componentSize="large"
-    >
-      <Suspense fallback={<div>loading...</div>}>
-        <AntdApp>
-          <RouterProvider
+    // <ConfigProvider
+    //   locale={zh_ch}
+    //   theme={{
+    //     cssVar: true, //开启css变量
+    //     hashed: false, // 如果你的应用中只存在一个版本的 antd，你可以设置为 false 来进一步减小样式体积。
+    //     token: {
+    //       colorPrimary,
+    //     },
+    //   }}
+    //   componentSize="large"
+    // >
+    //   <Suspense fallback={<div>loading...</div>}>
+    <AntdApp>
+      {/* <RouterProvider
             router={router}
             fallbackElement={<div>加载中...</div>}
-          ></RouterProvider>
-        </AntdApp>
-      </Suspense>
-    </ConfigProvider>
+          ></RouterProvider> */}
+      <Router />
+    </AntdApp>
+    //   </Suspense>
+    // </ConfigProvider>
   )
 }
 

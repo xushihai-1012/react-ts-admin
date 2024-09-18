@@ -6,6 +6,8 @@
 interface ImportMetaEnv {
   readonly VITE_APP_BASE_URL: string
   readonly VITE_APP_API_URL: string
+  readonly VITE_APP_HOMEPAGE: string
+  readonly VTTE_APP_ENV: 'development' | 'production'
 }
 
 interface ImportMeta {

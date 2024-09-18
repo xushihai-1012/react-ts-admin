@@ -1,5 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { getItem, setItem, removeItem } from "@/utils/storage";
+
+import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from "@/types/enum";
 
 interface settingsState {
   colorPrimary: string
