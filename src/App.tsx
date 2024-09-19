@@ -1,14 +1,18 @@
-import { Suspense } from 'react'
-import { RouterProvider } from 'react-router-dom'
+// import { Suspense } from 'react'
+// import { RouterProvider } from 'react-router-dom'
+import { App as AntdApp, ConfigProvider } from 'antd'
 import Router from './router'
 import './App.scss'
-import { App as AntdApp, ConfigProvider } from 'antd'
-import useSettingsStore from '@/stores/settings'
-import zh_ch from 'antd/locale/zh_CN'
+import AntdConfig from '@/theme/antd'
+import { Helmet } from 'react-helmet-async'
+import logo from '@/assets/imgs/logo.png'
+import { MotionLazy } from '@/components/Animate/MotionLazy'
+// import useSettingsStore from '@/stores/settings'
+// import zh_ch from 'antd/locale/zh_CN'
 // import { getOrgList } from "@/api/orgService";
 
 function App() {
-  const { colorPrimary } = useSettingsStore()
+  // const { colorPrimary } = useSettingsStore()
 
   // 获取环境变量
   //   console.log(import.meta.env.VITE_APP_BASE_URL)
@@ -36,13 +40,22 @@ function App() {
     //   componentSize="large"
     // >
     //   <Suspense fallback={<div>loading...</div>}>
-    <AntdApp>
-      {/* <RouterProvider
+    <AntdConfig>
+      <AntdApp>
+        {/* <RouterProvider
             router={router}
             fallbackElement={<div>加载中...</div>}
           ></RouterProvider> */}
-      <Router />
-    </AntdApp>
+        <MotionLazy>
+          <Helmet>
+            <title>Slash Admin</title>
+            <link rel="icon" href={logo} />
+          </Helmet>
+          <Router />
+        </MotionLazy>
+      </AntdApp>
+    </AntdConfig>
+
     //   </Suspense>
     // </ConfigProvider>
   )
