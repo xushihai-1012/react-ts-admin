@@ -1,0 +1,1 @@
+export { usePathName } from './usePathName'

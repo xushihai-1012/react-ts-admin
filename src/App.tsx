@@ -48,6 +48,7 @@ function App() {
           ></RouterProvider> */}
         <MotionLazy>
           <Helmet>
+            {/* 控制改变和更新反应页面中html的head标签内的标签值。 */}
             <title>Slash Admin</title>
             <link rel="icon" href={logo} />
           </Helmet>

@@ -1,8 +1,33 @@
-import { ThemeMode } from '@/types/enum'
+import { ThemeLayout, ThemeMode } from '@/types/enum'
 import styled from 'styled-components'
+import Progress from '@/components/ProgressBar'
+import useSettingsStore from '@/stores/settings'
+import { useThemeToken } from '@/theme/hooks'
+import { Suspense } from 'react'
+import { CircleLoading } from '@/components/Loading'
 
 const DashBoardLayout: React.FC = () => {
-  return <StyleWrapper>DashBoardLayout</StyleWrapper>
+  const useSettings = useSettingsStore()
+  const { settings } = useSettings
+  const { colorBgElevated, colorTextBase } = useThemeToken()
+
+  return (
+    <StyleWrapper>
+      <Progress />
+      <div
+        className={`flex h-screen overflow-hidden ${settings.themeLayout === ThemeLayout.Horizontal ? 'flex-col' : ''}`}
+        style={{
+          color: colorTextBase,
+          backgroundAttachment: colorBgElevated,
+          transition:
+            'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        }}
+      >
+        <Suspense fallback={<CircleLoading />}></Suspense>
+        DashBoardLayout
+      </div>
+    </StyleWrapper>
+  )
 }
 
 const StyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
