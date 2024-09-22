@@ -38,9 +38,13 @@ import {
 // export const router = createBrowserRouter(routes, {
 //   basename: import.meta.env.VITE_APP_BASE_URL,
 // })
+import { AppRouteObject } from '@/types/router'
 import DashboardLayout from '@/Layout/Dashboard'
 
-import { AppRouteObject } from '@/types/router'
+const LoginRoute: AppRouteObject = {
+  path: '/login',
+  Component: lazy(() => import('@/pages/Login')),
+}
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 
@@ -48,10 +52,12 @@ const Router = () => {
   const asyncRoutes: AppRouteObject = {
     path: '/',
     element: <DashboardLayout></DashboardLayout>,
-    children: [{ index: true, element: <Navigate to={HOMEPAGE}></Navigate> }],
+    children: [
+      { index: true, element: <Navigate to={HOMEPAGE} replace></Navigate> },
+    ],
   }
 
-  const routes = [asyncRoutes]
+  const routes = [asyncRoutes, LoginRoute]
 
   const router = createBrowserRouter(routes as RouteObject[])
 

@@ -5,6 +5,7 @@ import useSettingsStore from '@/stores/settings'
 import { useThemeToken } from '@/theme/hooks'
 import { Suspense } from 'react'
 import { CircleLoading } from '@/components/Loading'
+import Header from './Header'
 
 const DashBoardLayout: React.FC = () => {
   const useSettings = useSettingsStore()
@@ -12,7 +13,7 @@ const DashBoardLayout: React.FC = () => {
   const { colorBgElevated, colorTextBase } = useThemeToken()
 
   return (
-    <StyleWrapper>
+    <StyleWrapper $themeMode={settings.themeMode}>
       <Progress />
       <div
         className={`flex h-screen overflow-hidden ${settings.themeLayout === ThemeLayout.Horizontal ? 'flex-col' : ''}`}
@@ -23,8 +24,10 @@ const DashBoardLayout: React.FC = () => {
             'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         }}
       >
-        <Suspense fallback={<CircleLoading />}></Suspense>
-        DashBoardLayout
+        <Suspense fallback={<CircleLoading />}>
+          <Header></Header>
+          DashBoardLayout
+        </Suspense>
       </div>
     </StyleWrapper>
   )

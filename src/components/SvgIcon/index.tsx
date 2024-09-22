@@ -19,13 +19,14 @@ const SvgIcon: React.FC<PropsType> = ({
     let s = `${size}`
     s = `${s.replace('px', '')}px`
     return {
-      fontSize: s,
+      width: s,
+      height: s,
     }
   }
 
   return (
     <i className={styles.icon} style={getStyle()}>
-      <svg aria-hidden="true">
+      <svg aria-hidden="true" style={{ width: '100%', height: '100%' }}>
         <use xlinkHref={`${prefix}-${name}`} fill={color} />
       </svg>
     </i>
