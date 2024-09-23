@@ -1,4 +1,4 @@
-import useSettingStore from '@/stores/settings'
+import useSettingStore from '@/stores/settingsStore'
 import { Typography, Button, ColorPicker, DatePicker, Flex } from 'antd'
 
 const { Title } = Typography

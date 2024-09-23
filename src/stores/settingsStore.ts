@@ -1,8 +1,13 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { getItem, setItem, removeItem } from "@/utils/storage";
+import { getItem, setItem, removeItem } from '@/utils/storage'
 
-import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from "@/types/enum";
+import {
+  StorageEnum,
+  ThemeColorPresets,
+  ThemeLayout,
+  ThemeMode,
+} from '@/types/enum'
 
 // interface settingsState {
 //   colorPrimary: string
@@ -30,22 +35,22 @@ import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from "@/types/
 // )
 
 type SettingsType = {
-  themeColorPresets: ThemeColorPresets;
-  themeMode: ThemeMode;
-  themeLayout: ThemeLayout;
-  themeStretch: boolean;
-  breadCrumb: boolean;
-  multiTab: boolean;
-};
+  themeColorPresets: ThemeColorPresets
+  themeMode: ThemeMode
+  themeLayout: ThemeLayout
+  themeStretch: boolean
+  breadCrumb: boolean
+  multiTab: boolean
+}
 
 type SettingStore = {
-  settings: SettingsType;
+  settings: SettingsType
   // 使用 actions 命名空间来存放所有的 action
   actions: {
-    setSettings: (settings: SettingsType) => void;
-    clearSettings: () => void;
-  };
-};
+    setSettings: (settings: SettingsType) => void
+    clearSettings: () => void
+  }
+}
 
 const useSettingsStore = create<SettingStore>((set) => ({
   settings: getItem<SettingsType>(StorageEnum.Settings) || {
@@ -63,8 +68,8 @@ const useSettingsStore = create<SettingStore>((set) => ({
     },
     clearSettings() {
       removeItem(StorageEnum.Settings)
-    }
-  }
+    },
+  },
 }))
 
 export default useSettingsStore

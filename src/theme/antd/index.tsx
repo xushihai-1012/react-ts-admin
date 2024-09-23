@@ -10,7 +10,7 @@ import {
   colorPrimarys,
   customComponentConfig,
 } from './theme'
-import useSettingStore from '@/stores/settings'
+import useSettingStore from '@/stores/settingsStore'
 import { ThemeMode } from '@/types/enum'
 
 type Props = {

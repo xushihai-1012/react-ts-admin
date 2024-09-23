@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react'
 import { Drawer } from 'antd'
 import Color from 'color'
-import useSettingsStore from '@/stores/settings'
+import useSettingsStore from '@/stores/settingsStore'
 import { useThemeToken, useResponsive } from '@/theme/hooks'
 import { ThemeLayout } from '@/types/enum'
 import {
@@ -12,6 +12,7 @@ import {
 } from './config'
 import { IconButton, IconSvg } from '@/components/icon'
 import Logo from '@/components/Logo'
+import BreadCrumb from '../components/BreadCrumb'
 
 type Props = {
   className?: string
@@ -68,8 +69,9 @@ const Header: React.FC<Props> = ({ className = '', offsetTop = false }) => {
           ) : (
             <Logo></Logo>
           )}
-          header
-          {/* <div className="ml-4 hidden md:block">{settings.breadCrumb ? <></>}</div> */}
+          <div className="ml-4 hidden md:block">
+            {settings.breadCrumb ? <BreadCrumb></BreadCrumb> : null}
+          </div>
         </div>
       </div>
     </header>

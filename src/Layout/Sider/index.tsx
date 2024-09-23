@@ -4,7 +4,7 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import useSettingStore from '@/stores/settings'
+import useSettingStore from '@/stores/settingsStore'
 
 // 递归找到匹配的菜单项
 const findSelectedKeys = () => {

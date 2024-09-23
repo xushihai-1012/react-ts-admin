@@ -1,7 +1,7 @@
 import { ThemeLayout, ThemeMode } from '@/types/enum'
 import styled from 'styled-components'
 import Progress from '@/components/ProgressBar'
-import useSettingsStore from '@/stores/settings'
+import useSettingsStore from '@/stores/settingsStore'
 import { useThemeToken } from '@/theme/hooks'
 import { Suspense } from 'react'
 import { CircleLoading } from '@/components/Loading'
