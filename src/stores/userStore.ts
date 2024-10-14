@@ -2,10 +2,10 @@ import { create } from 'zustand'
 import { getItem, setItem, removeItem } from '@/utils/storage'
 import { StorageEnum } from '@/types/enum'
 import { UserInfo, UserToken } from '@/types/user'
-import { useNavigate } from "react-router-dom";
-import { App } from "antd";
+import { useNavigate } from 'react-router-dom'
+import { App } from 'antd'
 import { useMutation } from '@tanstack/react-query'
-import { singin, SignInReqParamType } from "@/api/userService";
+import { singin, SignInReqParamType } from '@/api/userService'
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 
@@ -35,10 +35,11 @@ const useUserStore = create<UserStore>((set) => ({
             set({ userInfo: {}, userToken: {} })
             removeItem(StorageEnum.User)
             removeItem(StorageEnum.Token)
-        }
+        },
     },
 }))
 
+// 直接导出方便使用
 export const useUserInfo = () => useUserStore((state) => state.userInfo)
 export const useUserToken = () => useUserStore((state) => state.userToken)
 export const useUserPermisson = () => useUserStore((state) => state.userInfo.permissions)
@@ -48,13 +49,13 @@ export const useSignIn = () => () => {
     const { message } = App.useApp()
     const { setUserInfo, setUserToken } = useUserAction()
 
-    const singInMutation = useMutation({
-        mutationFn: singin
+    const signInMutation = useMutation({
+        mutationFn: singin,
     })
 
-    const singIn = async (data: SignInReqParamType) => {
+    const signIn = async (data: SignInReqParamType) => {
         try {
-            const res = await singInMutation.mutateAsync(data)
+            const res = await signInMutation.mutateAsync(data)
             const { user, accessToken, refreshToken } = res
             setUserToken({ accessToken, refreshToken })
             setUserInfo(user)
@@ -62,11 +63,12 @@ export const useSignIn = () => () => {
         } catch (error: any) {
             message.warning({
                 content: error.message,
-                duration: 3
+                duration: 3,
             })
         }
     }
-}
 
+    return signIn
+}
 
 export default useUserStore
