@@ -41,7 +41,7 @@ const useUserStore = create<UserStore>((set) => ({
 
 export const useUserInfo = () => useUserStore((state) => state.userInfo)
 export const useUserToken = () => useUserStore((state) => state.userToken)
-export const useUserUserPermisson = () => useUserStore((state) => state.userInfo.permissions)
+export const useUserPermisson = () => useUserStore((state) => state.userInfo.permissions)
 export const useUserAction = () => useUserStore((state) => state.action)
 export const useSignIn = () => () => {
     const navigate = useNavigate()

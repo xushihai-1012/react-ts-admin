@@ -8,7 +8,7 @@ import { Iconify } from '@/components/icon'
 import { useMatches, Link } from 'react-router-dom'
 
 const BreadCrumb: React.FC = () => {
-  const [breadCrumbs, setBreadCrumbs] = useState([])
+  const [breadCrumbs, setBreadCrumbs] = useState<ItemType[]>([])
   const matches = useMatches()
 
   useEffect(() => {})
